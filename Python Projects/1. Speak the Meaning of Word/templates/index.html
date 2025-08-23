@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Speak the Meaning of Word</title>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Speak the Meaning of Word</h1>
+      <form method="POST">
+        <input type="text" name="word" placeholder="Enter a word" required />
+        <button type="submit">Get Meaning</button>
+      </form>
+      {% if result.word %}
+      <div class="result">
+        <h2>Word: {{ result.word }}</h2>
+        <h3>Meanings:</h3>
+        <ul>
+          {% for meaning in result.meanings %}
+          <li>{{ meaning }}</li>
+          {% endfor %}
+        </ul>
+        <h3>Synonyms:</h3>
+        <p>{{ result.synonyms|join(', ') }}</p>
+        <h3>Antonyms:</h3>
+        <p>{{ result.antonyms|join(', ') }}</p>
+      </div>
+      {% endif %}
+    </div>
+  </body>
+</html>
