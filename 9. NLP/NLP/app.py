@@ -15,7 +15,7 @@ nltk.download('omw-1.4')
 nltk.download('stopwords')
 nltk.download('averaged_perceptron_tagger')
 
-st.title("🔤 NLP Playground: Explore Tokenization, Roots & Embeddings")
+st.title("🔤TextLab: NLP Playground: Explore Tokenization, Roots & Embeddings")
 
 # Sidebar navigation
 st.sidebar.title("Navigation")
