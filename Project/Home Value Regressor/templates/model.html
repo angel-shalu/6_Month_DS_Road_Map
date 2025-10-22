@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="UTF-8" />
+        <title>Model Evaluation Results</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link
+          href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+        />
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        />
+        <style>
+          body {
+            background: linear-gradient(120deg, #f6d365 0%, #fda085 100%);
+            min-height: 100vh;
+          }
+          .navbar {
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+          }
+          .navbar-brand {
+            color: #fda085 !important;
+            font-weight: 700;
+            font-size: 1.5rem;
+          }
+          .nav-link {
+            color: #f6d365 !important;
+            font-weight: 500;
+          }
+          .nav-link.active,
+          .nav-link:hover {
+            color: #fda085 !important;
+          }
+          .main-card {
+            margin-top: 60px;
+            background: rgba(255, 255, 255, 0.97);
+            border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+            padding: 48px 36px 36px 36px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 1.2s;
+          }
+          @keyframes fadeIn {
+            from {
+              opacity: 0;
+              transform: translateY(40px);
+            }
+            to {
+              opacity: 1;
+              transform: translateY(0);
+            }
+          }
+          h2 {
+            color: #fda085;
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-align: center;
+          }
+          .data {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            overflow-x: auto;
+          }
+          table.data {
+            width: 100%;
+            margin-bottom: 0;
+            border-radius: 8px;
+            overflow: hidden;
+          }
+          table.data th {
+            background: linear-gradient(90deg, #f6d365 0%, #fda085 100%);
+            color: #fff;
+            font-weight: 600;
+            border: none;
+            text-align: center;
+          }
+          table.data td {
+            background: #fff;
+            text-align: center;
+          }
+          .btn-outline-secondary {
+            border-color: #fda085;
+            color: #fda085;
+          }
+          .btn-outline-secondary:hover {
+            background: #fda085;
+            color: #fff;
+          }
+          .footer {
+            margin-top: 60px;
+            text-align: center;
+            color: #fff;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
+          }
+        </style>
+      </head>
+      <body>
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="/">
+              <i class="fa-solid fa-house"></i> House Regressor
+            </a>
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#navbarNav"
+            >
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                  <a class="nav-link" href="/">
+                    <i class="fa-solid fa-calculator"></i> Predict
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" href="/results">
+                    <i class="fa-solid fa-chart-bar"></i> Model Results
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+        <!-- Main Content -->
+        <div class="main-card">
+          <h2>
+            <i class="fa-solid fa-chart-bar icon"></i>Model Evaluation Results
+          </h2>
+          <div class="data">
+            {% for table in tables %} {{ table|safe }} {% endfor %}
+          </div>
+          <div class="text-center mt-4">
+            <a href="/" class="btn btn-outline-secondary"
+              ><i class="fa-solid fa-arrow-left"></i> Back to Prediction</a
+            >
+          </div>
+        </div>
+        <div class="footer">
+          <span
+            >Made with <i class="fa-solid fa-heart"></i> for Data Science
+            Projects</span
+          >
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+      </body>
+    </html>
+  </head>
+</html>
