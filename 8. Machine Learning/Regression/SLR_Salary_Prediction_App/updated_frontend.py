@@ -1,136 +1,217 @@
 import streamlit as st
-import numpy as np
 import pickle
 
-# Custom CSS for beautiful landing page
-st.markdown('''
-    <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        background: linear-gradient(135deg, #232526 0%, #000000 100%);
-        min-height: 100vh;
-        animation: gradientBG 10s ease infinite;
-    }
-    @keyframes gradientBG {
-        0% {background-position: 0% 50%;}
-        50% {background-position: 100% 50%;}
-        100% {background-position: 0% 50%;}
-    }
-    .container {
-        max-width: 650px;
-        margin: 60px auto;
-        background: rgba(30, 30, 30, 0.85);
-        border-radius: 22px;
-        box-shadow: 0 8px 32px 0 rgba(0,0,0,0.45);
-        padding: 48px 36px 36px 36px;
-        text-align: center;
-        backdrop-filter: blur(6px);
-        border: 1.5px solid rgba(255,255,255,0.08);
-    }
-    .main-header h1 {
-        font-size: 2.7rem;
-        color: #fff;
-        margin-bottom: 10px;
-        letter-spacing: 1px;
-        text-shadow: 0 2px 8px #000a;
-    }
-    .main-header p {
-        color: #b0b0b0;
-        font-size: 1.25rem;
-        margin-bottom: 30px;
-    }
-    .start-btn {
-        display: inline-block;
-        padding: 16px 44px;
-        background: linear-gradient(90deg, #ff512f 0%, #dd2476 100%);
-        color: #fff;
-        font-size: 1.25rem;
-        border: none;
-        border-radius: 30px;
-        text-decoration: none;
-        font-weight: bold;
-        box-shadow: 0 4px 14px 0 rgba(221,36,118,0.18);
-        transition: background 0.3s, transform 0.2s;
-        margin-top: 22px;
-        letter-spacing: 1px;
-    }
-    .start-btn:hover {
-        background: linear-gradient(90deg, #dd2476 0%, #ff512f 100%);
-        transform: translateY(-3px) scale(1.07);
-    }
-    .icon {
-        font-size: 2.5rem;
-        color: #ff512f;
-        margin-bottom: 10px;
-        animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-10px); }
-    }
-    .fun-fact {
-        color: #ffd700;
-        font-size: 1.1rem;
-        margin: 18px 0 0 0;
-        font-style: italic;
-    }
-    footer {
-        margin-top: 40px;
-        color: #b0b0b0;
-        font-size: 1rem;
-    }
-    </style>
-''', unsafe_allow_html=True)
+# ---------------------------------------------------
+# ✅ GLOBAL CSS + BACKGROUND VIDEO  (WORKING FIX)
+# ---------------------------------------------------
+st.markdown("""
+<style>
 
-# --- Navigation logic ---
-if 'page' not in st.session_state:
-    st.session_state.page = 'landing'
+html, body, [class*="css"]  {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
 
-if st.session_state.page == 'landing':
-    st.markdown('''
-    <div class="container">
-        <header class="main-header">
+/* ✅ Full-screen background video */
+video#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: -999;
+    object-fit: cover;
+    filter: brightness(0.40);
+}
+
+/* ✅ Make Streamlit containers transparent */
+.stApp {
+    background: transparent !important;
+}
+
+.main-content {
+    text-align: center;
+    margin-top: 120px;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+/* ✅ Icon */
+.icon {
+    font-size: 3.8rem;
+    margin-bottom: 18px;
+}
+
+/* ✅ Typewriter Effect */
+.typewriter h1 {
+    font-size: 2.8rem;
+    white-space: nowrap;
+    overflow: hidden;
+    width: fit-content;
+    margin: 0 auto;
+    letter-spacing: 1px;
+    animation: typing 3s steps(40, end);
+}
+
+@keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+}
+
+/* ✅ Subtitle */
+.subtitle {
+    font-size: 1.3rem;
+    margin-top: 15px;
+    opacity: 0.92;
+}
+
+/* ✅ White CTA Button */
+.start-btn {
+    display: inline-block;
+    padding: 16px 44px;
+    background: white;
+    color: black !important;
+    text-decoration: none !important;
+    font-size: 1.25rem;
+    font-weight: bold;
+    border-radius: 28px;
+    margin-top: 28px;
+    transition: 0.3s;
+    box-shadow: 0 4px 15px rgba(255,255,255,0.2);
+}
+.start-btn:hover {
+    transform: scale(1.08);
+    background: #efefef;
+}
+
+/* ✅ Fun fact */
+.fun-fact {
+    font-size: 1.15rem;
+    margin-top: 22px;
+    color: #ffd700;
+    font-style: italic;
+}
+
+/* ✅ Footer */
+footer {
+    margin-top: 40px;
+    color: #eaeaea;
+    font-size: 1rem;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+
+
+# ---------------------------------------------------
+# ✅ NAVIGATION
+# ---------------------------------------------------
+if "page" not in st.session_state:
+    st.session_state.page = st.query_params.get("page", "landing")
+else:
+    new_page = st.query_params.get("page")
+    if new_page and new_page != st.session_state.page:
+        st.session_state.page = new_page
+
+
+def go_to(page):
+    st.session_state.page = page
+    st.query_params["page"] = page
+    st.rerun()
+
+
+
+# ---------------------------------------------------
+# ✅ LOAD MODEL
+# ---------------------------------------------------
+MODEL_PATH = r"C:\Users\shali\Desktop\DS_Road_Map\Project\SLR_Salary_Prediction_App\linear_regression_model.pkl"
+
+@st.cache_resource
+def load_model(path):
+    with open(path, "rb") as f:
+        return pickle.load(f)
+
+
+
+# ---------------------------------------------------
+# ✅ ✅ LANDING PAGE WITH WORKING BACKGROUND VIDEO ✅ ✅
+# ---------------------------------------------------
+if st.session_state.page == "landing":
+
+    # ✅ Background Video (NEW ML-THEME)
+    st.html("""
+        <video autoplay muted loop id="bg-video">
+            <source src="https://videos.pexels.com/video-files/3180083/3180083-hd_1920_1080_25fps.mp4" type="video/mp4">
+        </video>
+    """)
+
+    # ✅ UI on top of video
+    st.html("""
+        <div class="main-content">
+
             <div class="icon">💼</div>
-            <h1>Welcome to the Salary Prediction App</h1>
-            <p>Predict your salary based on your Years of Experience using Simple Linear Regression Machine Learing Model!</p>
-        </header>
-        <main>
-            <form action="#" method="post">
-                <button type="submit" name="start" class="start-btn" style="cursor:pointer;width:70%;margin:0 auto;">Start Predicting</button>
-            </form>
-            <div class="fun-fact">✨ Fun Fact: Did you know? The first regression analysis was published in 1805 by Adrien-Marie Legendre! ✨</div>
-        </main>
-        <footer>
-          <p>Made By <strong style="color: Red;">Shalini</strong> | Powered by <strong style="color: green;">Machine Learning</strong></p>
-        </footer>
-    </div>
-    ''', unsafe_allow_html=True)
-    # Streamlit workaround for button in HTML
-    if st.button("Start Predicting", key="start-btn-real"):
-        st.session_state.page = 'predict'
 
-if st.session_state.page == 'predict':
+            <div class="typewriter">
+                <h1>Welcome to the Salary Prediction App</h1>
+            </div>
+
+            <p class="subtitle">
+                Predict your salary instantly using Machine Learning.
+            </p>
+
+            <a href="?page=predict" class="start-btn">Start Predicting</a>
+
+            <div class="fun-fact">
+                ✨ Did you know? Regression analysis began in 1805 with Legendre! ✨
+            </div>
+
+            <footer>
+                Made By <strong style='color:red;'>Shalini</strong> |
+                Powered by <strong style='color:lightgreen;'>Machine Learning</strong>
+            </footer>
+
+        </div>
+    """)
+
+    nav = st.query_params.get("page")
+    if nav and nav != "landing":
+        go_to(nav)
+
+
+
+# ---------------------------------------------------
+# ✅ ✅ PREDICTION PAGE
+# ---------------------------------------------------
+elif st.session_state.page == "predict":
+
     st.header("Salary Prediction")
-    st.write("This app predicts the salary based on years of experience using a linear regression model.")
 
-    model = pickle.load(open(r"C:\Users\shali\Desktop\Nit Data Science\6_Month_DS_Road_Map_2025\8. Machine Learning\Regression\Salary_Prediction_App\linear_regression_model.pkl",'rb'))
+    try:
+        model = load_model(MODEL_PATH)
+    except Exception as e:
+        st.error(f"Model loading failed: {e}")
+        st.stop()
 
     col1, col2 = st.columns([2, 1])
+
     with col1:
-        years_of_experience = st.number_input("Enter Years of Experience:", min_value=0.0, max_value=50.0, value=1.0, step=0.1, help="How many years have you worked?")
-        education = st.selectbox("Select Education Level:", ["High School", "Bachelor's", "Master's", "PhD"], help="Choose your highest education completed.")
-        industry = st.selectbox("Select Industry:", ["IT", "Finance", "Healthcare", "Education", "Other"], help="Choose your industry.")
-        location = st.text_input("Location (City, Country):", help="Where are you based?")
+        years = st.number_input("Years of Experience:", 0.0, 50.0, 1.0, 0.1)
+        edu = st.selectbox("Education:", ["High School", "Bachelor's", "Master's", "PhD"])
+        ind = st.selectbox("Industry:", ["IT", "Finance", "Healthcare", "Education", "Other"])
+        loc = st.text_input("Location:")
+
         if st.button("Predict Salary"):
-            # For demo, only years_of_experience is used in prediction
-            experience_input = np.array([[years_of_experience]])
-            prediction = model.predict(experience_input)
-            st.success(f"The predicted salary for {years_of_experience} years of experience is: ₹{prediction[0]:,.2f}")
-            st.info(f"Education: {education} | Industry: {industry} | Location: {location if location else 'N/A'}")
+            predicted_salary = float(model.predict([[years]])[0])
+            st.success(f"Predicted Salary: ₹{predicted_salary:,.2f}")
+            st.info(f"Education: {edu} | Industry: {ind} | Location: {loc or 'N/A'}")
+
     with col2:
         st.image("https://img.icons8.com/ios-filled/200/ffffff/money-bag.png", width=120)
 
-    st.write("The model was trained using a dataset of salaries and years of experience. Built by Shalini.")
-    st.markdown('<div style="color:#ffd700;font-size:1.05rem;margin-top:18px;">💡 Tip: More features coming soon! Stay tuned for updates.</div>', unsafe_allow_html=True)
+    if st.button("⬅ Back to Home"):
+        st.query_params.clear()
+        go_to("landing")
