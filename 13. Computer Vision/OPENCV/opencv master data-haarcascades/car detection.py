@@ -2,7 +2,7 @@ import cv2
 import time
 
 # Load the car cascade classifier
-car_classifier_path = r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_car.xml"
+car_classifier_path = r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_car.xml"
 car_classifier = cv2.CascadeClassifier(car_classifier_path)
 
 # Check if the classifier is loaded correctly
@@ -15,7 +15,7 @@ if car_classifier.empty():
 #cap = cv2.VideoCapture(r'C:\Users\A3MAX SOFTWARE TECH\Desktop\WORK\2. DATASCIENCE PROJECT\10. Computer vision\Computer-Vision-Tutorial-master\Computer-Vision-Tutorial-master\image_examples\Cars.avi')
 
 # Video path
-video_path = r"C:\Users\shali\Pictures\PROJECT WORK\Before YOLO object detection (Input Video).mp4"
+video_path = r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\sample\car_detection.mp4s"
 # Load the video
 cap = cv2.VideoCapture(video_path)
 

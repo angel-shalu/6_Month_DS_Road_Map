@@ -3,16 +3,15 @@ import numpy as np
 import cv2
 
 # Load the face and eye Haar cascade classifiers
-face_classifier = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml")
-eye_classifier = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_eye.xml")
+# Load the face and eye Haar cascade classifiers
+face_classifier = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml")
+eye_classifier = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_eye.xml")
+print("Face Cascade Loaded:", face_classifier.empty())
+print("Eye Cascade Loaded:", eye_classifier.empty())
 
-# Load the image
-#img = cv2.imread(r"C:\Users\A3MAX SOFTWARE TECH\Desktop\WORK\1. KODI WORK\1. NARESH\10. WORKSHOP\7. Exploring Generative AI through computer vision\myimage.jpg")
-#img = cv2.imread(r"C:\Users\A3MAX SOFTWARE TECH\Desktop\WORK\2. DATASCIENCE PROJECT\10. Computer vision\computer vison\opencv\image_examples\5.jpg")#img = cv2.imread(r"C:\Users\Admin\Desktop\NIT\1. NIT_Batches\10. WORKSHOP\2024 - WORKSHOP\7. Exploring Generative AI through computer vision\myimage.jpg")
-img = cv2.imread(r"C:\Users\shali\Pictures\WhatsApp Image 2025-06-16 at 21.55.01_e3812112.jpg")
-#img = cv2.imread(r"C:\Users\Admin\Desktop\NIT\1. NIT_Batches\10. WORKSHOP\2024 - WORKSHOP\7. Exploring Generative AI through computer vision\myimage.jpg")
+# Load the images
+img = cv2.imread(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\sample\pic1.jpg")
 
-# Check if the image is loaded correctly
 if img is None:
     print("Error: Image not found or cannot be loaded!")
     exit()  # Exit if image is not loaded

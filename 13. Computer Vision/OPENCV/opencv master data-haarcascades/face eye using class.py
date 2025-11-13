@@ -71,8 +71,8 @@ class FaceAndEyeDetection:
         cv2.destroyAllWindows()
 
 # Paths to Haar cascade XML files for face and eye detection
-face_cascade_path = r'C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml'
-eye_cascade_path = r'C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_eye.xml'
+face_cascade_path = r'C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml'
+eye_cascade_path = r'C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_eye.xml'
 
 # Initialize the Face and Eye Detection system
 detection_system = FaceAndEyeDetection(face_cascade_path, eye_cascade_path)

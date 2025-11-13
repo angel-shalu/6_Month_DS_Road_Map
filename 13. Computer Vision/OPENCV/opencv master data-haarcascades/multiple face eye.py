@@ -1,8 +1,8 @@
 import cv2
 
 # Load the Haar cascade files for face and eye detection
-face_cascade = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml")
-eye_cascade = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_eye.xml")
+face_cascade = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml")
+eye_cascade = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_eye.xml")
 
 # Check if the cascade files were loaded properly
 if face_cascade.empty():

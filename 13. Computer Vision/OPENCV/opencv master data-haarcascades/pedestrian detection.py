@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 # Set the path for the body classifier (Haar Cascade XML)
-body_classifier_path = r'C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_fullbody.xml'
+body_classifier_path = r'C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_fullbody.xml'
 
 # Check if the classifier path exists
 if not os.path.exists(body_classifier_path):
@@ -19,7 +19,7 @@ if body_classifier.empty():
     exit()
 
 # Set the path for the video file
-video_path = r'C:\Users\Admin\Desktop\MyFile\0. DATASCIENCE PROJECT\10. Computer vision\Computer-Vision-Tutorial-master\Computer-Vision-Tutorial-master\image_examples\walking.avi'
+video_path = r'C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\sample\body_detect.mp4'
 
 # Check if the video path exists
 if not os.path.exists(video_path):

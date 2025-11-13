@@ -2,11 +2,10 @@ import numpy as np
 import cv2
 
 # Load the Haar Cascade for face detection
-face_classifier = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml")
-# Load the image
-image = cv2.imread(r"C:\Users\shali\Pictures\photo1.jpg")
+face_classifier = cv2.CascadeClassifier(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\Haarcascades\haarcascade_frontalface_default.xml")
 
-#image = cv2.imread(r'C:\Users\A3MAX SOFTWARE TECH\Desktop\WORK\2. DATASCIENCE PROJECT\10. Computer vision\Computer-Vision-Tutorial-master\Computer-Vision-Tutorial-master\image_examples\5.jpg')
+# Load the image
+image = cv2.imread(r"C:\Users\shali\Desktop\DS_Road_Map\13. Computer Vission\OPENCV\opencv master data-haarcascades\sample\pic2.jpgs")
 
 # Check if the image is loaded correctly
 if image is None:
